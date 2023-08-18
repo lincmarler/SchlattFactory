@@ -1,0 +1,31 @@
+.thug-img {
+    width: 620px;
+    height: 447;
+    border: 1rem outset pink;
+    box-shadow: 0 0 0 2rem skyblue;
+    border-radius: 15px
+}
+
+.thug-hover:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+p {
+    margin: 0;
+}
+
+.button-border {
+    border: 1rem;
+    border-radius: 10px;
+}
+
+.statsBorder {
+    border: 1rem outset skyblue;
+    border-radius: 10px
+}
+
+.statsBorder2 {
+    border: .5rem outset pink;
+    border-radius: 10px
+}

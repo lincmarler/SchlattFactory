@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>SchlattFactory</title>
+</head>
+
+
+<style>
+    body.debug .container,
+    body.debug .container-fluid {
+        outline: 2px double blue;
+        outline-offset: -2px;
+    }
+
+    body.debug .row {
+        outline: 2px dashed red;
+        outline-offset: -2px;
+    }
+
+    body.debug [class*="col-"] {
+        outline: 2px dotted forestgreen;
+        outline-offset: -3px;
+    }
+</style>
+
+
+<body class="">
+    <header class="container-fluid text-center p-5 mt-3">
+        <section class="row">
+            <div class="col-12">
+                <h1 class="fw-bold">Schlatt Factory</h1>
+            </div>
+        </section>
+    </header>
+
+    <main class="container-fluid">
+        <section class="row text-center p-5">
+            <div class="col-12">
+                <img src="https://66.media.tumblr.com/99e9641cfe0985cc43f39fb2382ce459/tumblr_ok21vt3uQ61qkegy4o1_500.gif"
+                    alt="Thug" class="thug-img thug-hover" onclick="getMoney()">
+            </div>
+        </section>
+        <section class="row justify-content-center pt-3 statsBorder">
+            <div class="col-2 align-self-end me-1 statsBorder2">
+                <div class="row">
+                    <!-- //SECTION cursor value -->
+                    <div class="col-6 fs-4" id="clickValue">+$100/click</div>
+                    <div class="col-6 fs-4 text-end"><i class="mdi mdi-cursor-default-click"></i></div>
+                </div>
+            </div>
+            <div class="col-4 fs-1">
+                <div class="row text-center">
+                    <div class="col-6 text-end"><i class="mdi mdi-cash-100"></i></div>
+                    <!-- //SECTION total money -->
+                    <div class="col-6 text-start" id="totalMoney">$0</div>
+                </div>
+            </div>
+            <div class="col-2 align-self-end ms-1">
+                <div class="row">
+                    <div class="col-6 fs-4"><i class="mdi mdi-clock"></i></div>
+                    <!-- //SECTION auto value -->
+                    <div class="col-6 fs-4 text-end" id="autoValue">$0/10s</div>
+                </div>
+            </div>
+        </section>
+        <!-- //SECTION upgrade panel -->
+        <secion class="row">
+            <!-- //!SECTION upgrade buttons -->
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-6">
+                        <h5>CLICK UPGRADES</h5>
+                        <div class="row">
+                            <div class="col-6 bg-info thug-hover button-border m-2" onclick="buyBlicky()">
+                                <button class="btn btn-info text-light fs-4">$<span id="blickyCost">1000</span><i
+                                        class="mdi mdi-cash-100"></i></button>
+                            </div>
+                            <div class="col-4 mt-2">
+                                <p>Blicky</p>
+                                <p>+100</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 bg-info thug-hover button-border m-2" onclick="buyJuice()">
+                                <button class="btn btn-info text-light fs-4">$<span id="juiceCost">5000</span><i
+                                        class="mdi mdi-cash-100"></i></button>
+                            </div>
+                            <div class="col-5 mt-2">
+                                <p>Juice</p>
+                                <p>+500</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h5>AUTOMATIC UPGRADES</h5>
+                        <div class="row">
+                            <div class="col-6 bg-info thug-hover button-border m-2"
+                                onclick="buyAuto('spin'); addAutoSpinPrice()">
+                                <button class="btn btn-info text-light fs-4">$<span id="spinCost">10</span>k<i
+                                        class="mdi mdi-cash-100"></i></button>
+                            </div>
+                            <div class="col-5 mt-2">
+                                <p>Spin block</p>
+                                <p>+1000/10s</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 bg-info thug-hover button-border m-2"
+                                onclick="buyAuto('pushin');addAutoPushPrice()">
+                                <button class="btn btn-info text-light fs-4">$<span id="pushCost">50</span>k<i
+                                        class="mdi mdi-cash-100"></i></button>
+                            </div>
+                            <div class="col-5 mt-2">
+                                <p>Pushin 🅿️</p>
+                                <p>+40k/10s</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //SECTION upgrade effects -->
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-6">
+                        <h5>CLICK STATS</h5>
+                        <div class="row">
+                            <div class="col-2 fs-3 text-center m-2 mt-3">
+                                <div id="blickyCount">0</div>
+                            </div>
+                            <div class="col-3 align-self-center mt-3">
+                                <p>Blickies</p>
+                            </div>
+                            <div class="col-3 fs-2 text-end mt-3"><i class="mdi mdi-arrow-right-bold-box-outline"></i>
+                            </div>
+                            <div class="col-3 fs-3 text-center mt-3" id="blickyValue">1</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 fs-3 text-center m-2 mt-3">
+                                <div id="juiceCount">0</div>
+                            </div>
+                            <div class="col-3 align-self-center mt-3">
+                                <p>Juice</p>
+                            </div>
+                            <div class="col-3 fs-2 text-end mt-3"><i class="mdi mdi-arrow-right-bold-box-outline"></i>
+                            </div>
+                            <div class="col-3 fs-3 text-center mt-3" id="juiceValue">0</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h5>AUTOMATIC STATS</h5>
+                        <div class="row">
+                            <div class="col-2 fs-3 text-center m-2 mt-3">
+                                <div id="blockCount">0</div>
+                            </div>
+                            <div class="col-5 align-self-center mt-3">
+                                <p>Blocks Spun</p>
+                            </div>
+                            <div class="col-2 fs-2 text-end mt-3"><i class="mdi mdi-arrow-right-bold-box-outline"></i>
+                            </div>
+                            <div class="col-2 fs-3 text-center mt-3" id="blockValue">0</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 fs-3 text-center m-2 mt-3">
+                                <div id="pushCount">0</div>
+                            </div>
+                            <div class="col-5 align-self-center mt-3">
+                                <p>🅿️ Level</p>
+                            </div>
+                            <div class="col-2 fs-2 text-end mt-3"><i class="mdi mdi-arrow-right-bold-box-outline"></i>
+                            </div>
+                            <div class="col-2 fs-3 text-center mt-3" id="pushValue">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </secion>
+    </main>
+
+
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
