@@ -35,7 +35,7 @@ const autoUpgrades = [
     }
 ]
 
-let money = 1000000
+let money = 0
 let clickMoney = 100
 let blicky = clickUpgrades[0]
 let juice = clickUpgrades[1]
